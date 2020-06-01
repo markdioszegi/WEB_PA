@@ -1,6 +1,6 @@
 <!-- # ![logo](logo.svg) -->
 
-# ![logo](logo.svg)
+# ![logo](wwwroot/img/logo.svg)
 
 ## The idea - GetSet
 
@@ -10,6 +10,7 @@
 ## Features
 
 - A single page app
-- Customers: customers can add products in their cart
+- Customers: customers can add/update/remove products in their cart
+- Admins: can add/update/remove products to the site
 - View my cart: you can take a look at your products and sums the price
-- Products: can set quantity or increment, can't put it into cart if out of stock
+- Products: can't put it into cart if out of stock

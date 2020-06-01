@@ -13,6 +13,8 @@ namespace PA
     {
         public static void Main(string[] args)
         {
+            string connectionString = "Host=localhost;Username=postgres;Password=admin;Database=getset";
+            Database database = new Database(connectionString);
             CreateHostBuilder(args).Build().Run();
         }
 
