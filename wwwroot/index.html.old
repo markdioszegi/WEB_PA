@@ -14,35 +14,36 @@
 </head>
 
 <body>
-    <div class="main">
-        <div id="navBar" class="container nav-bar">
-            <img class="logo" src="img/logo.svg"></img>
-            <div id="home" class="nav-item active">
-                Home
-            </div>
-            <div id="smthing1" class="nav-item">
-                Smthing
-            </div>
-            <div id="smthing2" class="nav-item">
-                Smthing
-            </div>
 
-            <div class="nav-item align-right">
-                Login
-            </div>
-        </div>
 
-        <div id="content" class="container content">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci nam, iste quasi asperiores repellendus
-            ipsum obcaecati! Deserunt eos corporis esse quis! Officia quo sequi nobis quis eligendi exercitationem, vel
+    <!-- MAIN DIV -->
+    <div class="container">
+        <div id="homeContent" class="content">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Adipisci nam, iste quasi asperiores
+            repellendus
+            ipsum obcaecati! Deserunt eos corporis esse quis! Officia quo sequi nobis quis eligendi exercitationem,
+            vel
             provident! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto tempore fuga magnam officia
             repellendus ipsum, vero error saepe necessitatibus quisquam quasi aut nostrum voluptatibus eos adipisci
             eligendi obcaecati quaerat. Sapiente. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos culpa
-            vitae minima aperiam. Deserunt, deleniti. Impedit laborum optio cupiditate exercitationem rerum asperiores
+            vitae minima aperiam. Deserunt, deleniti. Impedit laborum optio cupiditate exercitationem rerum
+            asperiores
             accusantium consectetur adipisci, labore nam, ad dicta nulla. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Aut consectetur dignissimos autem inventore incidunt repellat ab laboriosam soluta ipsam
+            adipisicing elit. Aut consectetur dignissimos autem inventore incidunt repellat ab laboriosam soluta
+            ipsam
             sapiente sit unde doloribus, magni, doloremque voluptas ducimus velit natus nesciunt?
         </div>
+
+        <div id="loginContent" class="content">
+            login here
+        </div>
+
+        <div id="productsContent" class="content">
+            products here
+        </div>
+    </div>
+
+
     </div>
 </body>
 

@@ -10,10 +10,10 @@ create table users
 create table products
 (
     id serial not null primary key,
-    product_category varchar (64) not null,
+    category varchar (64) not null,
     name varchar (64) not null,
     description text,
-    price float not null,
+    price numeric(13,2) not null,
     quantity int not null
 );
 
@@ -30,16 +30,22 @@ create table order_details
     product_id int not null references products (id) on delete cascade
 );
 
-create or replace function check_quantity()
+create or replace function check_quantity
+()
 returns trigger as
 $$
 begin
     if new.quantity < 0 then
     raise exception 'Quantity cannot be less than 0';
-    end if;
+end
+if;
     return new;
 end;
 $$ LANGUAGE plpgsql;
 
-create trigger trg_check_quantity before insert or update on products
-for each row execute function check_quantity();
+create trigger trg_check_quantity before
+insert or
+update on products
+for each row
+execute function check_quantity
+();

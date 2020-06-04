@@ -25,8 +25,8 @@ namespace PA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
             //services.AddSingleton(typeof(IUserService))
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,10 +41,10 @@ namespace PA
 
             app.UseRouting();
 
-            app.UseDefaultFiles(new DefaultFilesOptions
+            /* app.UseDefaultFiles(new DefaultFilesOptions
             {
                 DefaultFileNames = new List<string> { "index.html" }
-            });
+            }); */
 
             app.UseStaticFiles();
 
@@ -54,7 +54,10 @@ namespace PA
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

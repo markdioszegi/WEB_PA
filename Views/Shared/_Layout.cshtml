@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>GetSet Webshop - @ViewData["Title"]</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400;1,700;1,800&display=swap"
+        rel="stylesheet">
+    <link rel='stylesheet' type='text/css' media='screen' href='~/css/main.css'>
+    <script src='~/js/main.js'></script>
+</head>
+<body>
+    <div class="main">
+        <ul id="navBar" class="container nav-bar">
+            <a asp-controller="Home" asp-action="Index"><img class="nav-brand" src="~/img/brand.svg"></img></a>
+
+            <li id="home" class="nav-item active">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+
+            <li id="products" class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="Products">Products</a>
+            </li>
+
+            <li id="smthing2" class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="Smthing">Something</a>
+            </li>
+
+            <li id="login" class="nav-item align-right">
+                <a class="nav-link" asp-controller="Home" asp-action="Login">Login</a>
+            </li>
+        </ul>
+
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>
