@@ -76,7 +76,7 @@ namespace PA
                     string email = reader[3].ToString();
                     string role = reader[4].ToString();
 
-                    Users.Add(new User(id, username, password, email, role));
+                    //Users.Add(new User(id, username, password, email, role));
                 }
             }
 
@@ -111,7 +111,7 @@ namespace PA
                     float price = float.Parse(reader[4].ToString());
                     int quantity = Int32.Parse(reader[5].ToString());
 
-                    Products.Add(new Product(id, category, name, description, price, quantity));
+                    //Products.Add(new Product(id, category, name, description, price, quantity));
                 }
             }
 

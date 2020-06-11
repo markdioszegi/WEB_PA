@@ -11,8 +11,6 @@ namespace PA
 {
     public class Program
     {
-        public static string connectionString = "Host=localhost;Username=postgres;Password=admin;Database=getset";
-        public static Database database = new Database(connectionString);
         public static void Main(string[] args)
         {
 

@@ -1,3 +1,8 @@
+@{
+    @* var userRole = ((ClaimsIdentity)Context.User.Identity).Claims;
+    System.Console.WriteLine(userRole); *@
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,21 +26,44 @@
             </li>
 
             <li id="products" class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Products">Products</a>
+                <a class="nav-link" asp-controller="Home" asp-action="ListProducts">Products</a>
             </li>
 
-            <li id="smthing2" class="nav-item">
-                <a class="nav-link" asp-controller="Home" asp-action="Smthing">Something</a>
-            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (Context.User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault() == "admin")
+                {
+                    <li id="newProduct" class="nav-item align-right">
+                        <a class="nav-link" asp-controller="Home" asp-action="AddProduct">Add Product</a>
+                    </li>
+                }
 
-            <li id="login" class="nav-item align-right">
-                <a class="nav-link" asp-controller="Home" asp-action="Login">Login</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Cart">Cart</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Account" asp-action="Profile">Profile</a>
+                </li>
+
+                <li class="nav-item">
+                    <form method="POST" asp-controller="Account" asp-action="Logout">
+                        <a class="nav-link clickable" onclick="this.parentNode.submit(); return false;">Logout</a>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item align-right">
+                    <a class="nav-link" asp-controller="Account" asp-action="Index">Login</a>
+                </li>
+            }
         </ul>
 
         <div class="container">
             @RenderBody()
         </div>
     </div>
+
 </body>
 </html>

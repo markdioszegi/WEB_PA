@@ -1,5 +1,11 @@
 @{
     ViewData["Title"] = "Home";
+    string name = string.Empty;
+    
+    if (User.Identity.IsAuthenticated)
+    {
+        name = User.Claims.Where(x => x.Type == "Username").Select(c => c.Value).SingleOrDefault();
+    }
 }
 
-<p>hai test</p>
+<h1>Welcome, @name</h1>

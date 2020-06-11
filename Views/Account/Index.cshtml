@@ -1,0 +1,45 @@
+@model AccountModel
+
+@{
+    ViewData["Title"] = "Login or Register";
+}
+
+<div class="account-box">
+    <div class="tabs">
+        <button id="loginBtn">Login</button>
+        <button id="registerBtn">Register</button>
+    </div>
+
+    <div class="forms">
+        <div id="register" class="tab-content">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+            {
+                <div class="input-box">
+                    <input type="text" asp-for="RegisterModel.Username" placeholder="Username" required/>
+                </div>
+                <div class="input-box">
+                    <input type="email" asp-for="RegisterModel.Email" placeholder="Email" required/>
+                </div>
+                <div class="input-box">
+                    <input type="password" asp-for="RegisterModel.Password" placeholder="Password" required/>
+                </div>
+
+                <input class="clickable" type="submit" value="Register">
+            }
+        </div>
+
+        <div id="login" class="tab-content">
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                <div class="input-box">
+                    <input type="text" asp-for="LoginModel.Username" placeholder="Username" required/>
+                </div>
+                <div class="input-box">
+                    <input type="password" asp-for="LoginModel.Password" placeholder="Password" required/>
+                </div>
+
+                <input class="clickable" type="submit" value="Login">
+            }
+        </div>
+    </div>
+</div>

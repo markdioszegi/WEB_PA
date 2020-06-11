@@ -1,5 +1,39 @@
+@model List<Product>
+
 @{
     ViewData["Title"] = "Products";
 }
 
-<p>prods here</p>
+<div class="products-box">
+    @if (!Model.Any())
+    {
+        <h1>The shop is currently empty. Come back later!</h1>
+    }
+    else
+    {
+        @foreach (var product in Model)
+        {
+            <div class="product" data-id="@product.Id">
+                <img src="https://thumbs.dreamstime.com/z/sample-stamp-white-background-sign-90532936.jpg" alt="">
+
+                <div class="info" >
+                    <div class="name">
+                        <h3>@product.Name</h3>
+                    </div>
+                    @*  *@
+                    @if (product.Quantity > 0)
+                    {
+                        <span class="in-stock">In stock (@product.Quantity)</span>
+                    }
+                    else
+                    {
+                        <span class="out-of-stock">Out of stock</span>
+                    }
+                    <br>
+                    <span class="price">$@product.Price</span>
+                    <button class="btn-view float-right" onclick="location.href='@Url.Action("ViewProduct", "Home", new {id = product.Id})'">View</button>
+                </div>
+            </div>
+        }
+    }
+</div>

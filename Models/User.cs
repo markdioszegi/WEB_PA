@@ -2,24 +2,24 @@ namespace PA
 {
     public class User
     {
-        int id { get; set; }
-        string username { get; set; }
-        string password { get; set; }
-        string email { get; set; }
-        string role { get; set; }
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public string Role { get; set; }
 
-        public User(int id, string username, string password, string email, string role)
+        /* public User(int id, string username, string password, string email, string role)
         {
-            this.id = id;
-            this.username = username;
-            this.password = password;
-            this.email = email;
-            this.role = role;
-        }
+            Id = id;
+            Username = username;
+            Password = password;
+            Email = email;
+            Role = role;
+        } */
 
         public override string ToString()
         {
-            return $"id: {id}\nusername: {username}\npass: {password}\nemail: {email}\nrole: {role}";
+            return $"id: {Id}\nusername: {Username}\npass: {Password}\nemail: {Email}\nrole: {Role}";
         }
     }
 }

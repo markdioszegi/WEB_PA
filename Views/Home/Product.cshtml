@@ -1,0 +1,20 @@
+@model Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<p>@Model.Name</p>
+<p>Category: @Model.Category</p>
+<p>@Model.Description</p>
+<p>@Model.Price</p>
+@if (Model.Quantity > 0)
+{
+    <p>In stock (@Model.Quantity)</p>    
+    <input type="number" value="1" min="1" max="@Model.Quantity">
+    <input type="submit" value="Add to cart">
+}
+else
+{
+    <p>Out of stock!</p>
+}

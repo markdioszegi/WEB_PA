@@ -6,10 +6,10 @@ namespace PA
         public string Category { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public float Price { get; set; }
+        public decimal Price { get; set; }
         public int Quantity { get; set; }
 
-        public Product(int id, string category, string name, string description, float price, int quantity)
+        /* public Product(int id, string category, string name, string description, float price, int quantity)
         {
             Id = id;
             Category = category;
@@ -17,7 +17,7 @@ namespace PA
             Description = description;
             Price = price;
             Quantity = quantity;
-        }
+        } */
 
         public override string ToString()
         {
