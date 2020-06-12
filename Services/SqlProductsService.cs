@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using PA.Models;
 
 namespace PA.Services
 {
@@ -17,8 +18,8 @@ namespace PA.Services
             return new Product
             {
                 Id = (int)reader["id"],
-                Category = reader["category"] as string,
                 Name = reader["name"] as string,
+                Category = reader["category"] as string,
                 Description = reader["description"] as string,
                 Price = (decimal)reader["price"],
                 Quantity = (int)reader["quantity"],
@@ -54,6 +55,40 @@ namespace PA.Services
             using var reader = command.ExecuteReader();
             reader.Read();
             return ToProduct(reader);
+        }
+
+        public void AddProduct(ProductModel product)
+        {
+            using var command = _connection.CreateCommand();
+
+            var nameParam = command.CreateParameter();
+            nameParam.ParameterName = "name";
+            nameParam.Value = product.Name;
+
+            var categoryParam = command.CreateParameter();
+            categoryParam.ParameterName = "category";
+            categoryParam.Value = product.Category;
+
+            var descriptionParam = command.CreateParameter();
+            descriptionParam.ParameterName = "description";
+            descriptionParam.Value = product.Description;
+
+            var priceParam = command.CreateParameter();
+            priceParam.ParameterName = "price";
+            priceParam.Value = product.Price;
+
+            var quantityParam = command.CreateParameter();
+            quantityParam.ParameterName = "quantity";
+            quantityParam.Value = product.Quantity;
+
+            command.CommandText = @"INSERT INTO products (name, category, description, price, quantity) VALUES (@name, @category, @description, @price, @quantity)";
+            command.Parameters.Add(categoryParam);
+            command.Parameters.Add(nameParam);
+            command.Parameters.Add(descriptionParam);
+            command.Parameters.Add(priceParam);
+            command.Parameters.Add(quantityParam);
+
+            HandleExecuteNonQuery(command);
         }
     }
 }

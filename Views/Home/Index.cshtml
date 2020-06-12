@@ -6,6 +6,10 @@
     {
         name = User.Claims.Where(x => x.Type == "Username").Select(c => c.Value).SingleOrDefault();
     }
+    else
+    {
+        name = "Guest";
+    }
 }
 
 <h1>Welcome, @name</h1>

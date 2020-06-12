@@ -20,7 +20,8 @@ a
 
 .container
 {
-    margin-top: 2em;
+    box-sizing: content-box;
+    padding: 2em 0;
     box-shadow: 0 1px 0 rgba(0,0,0,0.05);
     border-radius: 2px;
 }
@@ -38,6 +39,7 @@ a
     overflow: hidden;
     text-align: center;
     padding: 0;
+    margin: 2em 0;
     color: black;
     /* background-color: rgb(221, 75, 75); */
 }
@@ -281,4 +283,15 @@ a
 .input-box
 {
     margin-bottom: 1em;
+}
+
+.error-box
+{
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 2px;
+    background-color: rgb(221, 75, 75);
 }

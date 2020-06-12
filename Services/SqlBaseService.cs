@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Data.Common;
 
@@ -15,9 +16,12 @@ namespace PA.Services
             {
                 if (int.TryParse((string)ex.Data["SqlState"], out int sqlState))
                 {
-                    System.Console.WriteLine("Something happened! " + sqlState);
+                    if (sqlState == 23505)
+                    {
+                        throw new ProductAlreadyExists();
+                    }
                 }
-                throw;
+                //throw;
             }
         }
     }

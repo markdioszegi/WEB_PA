@@ -31,7 +31,7 @@
                     }
                     <br>
                     <span class="price">$@product.Price</span>
-                    <button class="btn-view float-right" onclick="location.href='@Url.Action("ViewProduct", "Home", new {id = product.Id})'">View</button>
+                    <button class="btn-view float-right" onclick="location.href='@Url.Action("ShowProduct", "Product", new {id = product.Id})'">View</button>
                 </div>
             </div>
         }

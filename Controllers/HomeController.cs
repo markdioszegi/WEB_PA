@@ -19,13 +19,11 @@ namespace PA.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductsService _productsService;
-        private readonly IUsersService _usersService;
 
-        public HomeController(ILogger<HomeController> logger, IProductsService productsService, IUsersService usersService)
+        public HomeController(ILogger<HomeController> logger, IProductsService productsService)
         {
             _logger = logger;
             _productsService = productsService;
-            _usersService = usersService;
         }
 
         [AllowAnonymous]
@@ -36,33 +34,11 @@ namespace PA.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        [HttpGet]
-        public IActionResult ListProducts()
-        {
-            System.Console.WriteLine("Invoked products!");
-
-            return View("Products", _productsService.GetAll());
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
-        public IActionResult ViewProduct(int id)
-        {
-            return View("Product", _productsService.GetOne(id));
-        }
-
         [HttpGet]
         public IEnumerable<User> GetUsers()
         {
             //todo json
             return null;
-        }
-
-        [Authorize(Roles = "admin")]
-        public IActionResult AddProduct()
-        {
-            return View();
         }
     }
 }

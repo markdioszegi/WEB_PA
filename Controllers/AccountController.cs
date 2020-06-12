@@ -43,10 +43,10 @@ namespace PA.Controllers
             {
                 _usersService.Register(account.RegisterModel.Username, account.RegisterModel.Password, account.RegisterModel.Email);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                ModelState.AddModelError("Username", "Already taken.");
-                //return View("Account");
+                ModelState.AddModelError("AlreadyExists", "This username is already taken.");
+                return View("Index");
             }
             return View("Index");
         }
@@ -85,8 +85,7 @@ namespace PA.Controllers
         //[AllowAnonymous]
         public async Task<IActionResult> LogoutAsync(string returnUrl)
         {
-            /* var claims = HttpContext.User.Claims;
-            _logger.LogInformation(String.Join(", ", claims)); */
+            _logger.LogInformation(String.Join(", ", HttpContext.User.Claims));
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             if (returnUrl == null)
             {

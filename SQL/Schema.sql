@@ -15,8 +15,8 @@ create table users
 create table products
 (
     id serial not null primary key,
+    name varchar (64) unique not null,
     category varchar (64) not null,
-    name varchar (64) not null,
     description text,
     price numeric(13,2) not null,
     quantity int not null check (quantity > 0),
