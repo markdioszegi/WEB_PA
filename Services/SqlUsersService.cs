@@ -26,12 +26,54 @@ namespace PA.Services
 
         public List<User> GetAll()
         {
-            throw new System.NotImplementedException();
+            List<User> users = new List<User>();
+
+            using var command = _connection.CreateCommand();
+
+            command.CommandText = "SELECT * FROM users";
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                users.Add(ToUser(reader));
+            }
+            return users;
         }
 
         public User GetOne(int id)
         {
-            throw new System.NotImplementedException();
+            using var command = _connection.CreateCommand();
+            command.CommandText = "SELECT * FROM users WHERE id = @id";
+
+            var idParam = command.CreateParameter();
+            idParam.ParameterName = "id";
+            idParam.Value = id;
+            command.Parameters.Add(idParam);
+
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                return ToUser(reader);
+            }
+            return null;
+        }
+
+        public User GetOne(string username)
+        {
+            using var command = _connection.CreateCommand();
+            command.CommandText = "SELECT * FROM users WHERE username = @username";
+
+            var usernameParam = command.CreateParameter();
+            usernameParam.ParameterName = "username";
+            usernameParam.Value = username;
+            command.Parameters.Add(usernameParam);
+
+            using var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                return ToUser(reader);
+            }
+            return null;
         }
 
         public User Login(string username, string password)
@@ -74,7 +116,7 @@ namespace PA.Services
             emailParam.ParameterName = "email";
             emailParam.Value = email;
 
-            command.CommandText = @"INSERT INTO users (username, password, email, role) VALUES (@username, @password, @email, 'customer')";
+            command.CommandText = @"INSERT INTO users (username, password, email) VALUES (@username, @password, @email)";
             command.Parameters.Add(usernameParam);
             command.Parameters.Add(passwordParam);
             command.Parameters.Add(emailParam);

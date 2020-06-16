@@ -75,6 +75,7 @@ namespace PA
             services.AddScoped<IDBService, PostgreSqlDBService>();
             services.AddScoped<IProductsService, SqlProductsService>();
             services.AddScoped<IUsersService, SqlUsersService>();
+            services.AddScoped<IOrdersService, SqlOrdersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,6 +83,7 @@ namespace PA
         {
             if (env.IsDevelopment())
             {
+                System.Console.WriteLine("PAGE IS IN DEV MODE");
                 app.UseDeveloperExceptionPage();
             }
             else

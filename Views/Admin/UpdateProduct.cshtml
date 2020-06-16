@@ -1,0 +1,27 @@
+@model ProductModel
+
+@{
+    ViewData["Title"] = "Update a product";
+}
+
+<h3>Update a product</h3>
+<div class="error-box">
+    @Html.ValidationMessage("AlreadyExists")
+</div>
+
+@using (Html.BeginForm("UpdateProduct", "Admin", FormMethod.Post))
+{
+    <select name="ddlUpdateProduct">
+    @foreach (var product in Model.Products)
+    {
+        <option value="@product.Name">@product.Name</option>
+    }
+    </select>
+
+    <input type="text" asp-for="Name" placeholder="Product name" required>
+    <input type="text" asp-for="Category" placeholder="Category (separated by commas)" required>
+    <input type="text" asp-for="Description" placeholder="Description" required>
+    <input type="price" asp-for="Price" placeholder="Price" required>
+    <input type="number" asp-for="Stock" value="" min="1" placeholder="Stock" required>
+    <input type="submit" value="Update">
+}

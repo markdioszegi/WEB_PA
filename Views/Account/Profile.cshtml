@@ -1,12 +1,22 @@
-@using System.Threading
+@model List<User>
 @{
     ViewData["Title"] = "My profile";
-
-    string id = User.Claims.Where(x => x.Type == "Id").Select(c => c.Value).SingleOrDefault();
-    string username = User.Claims.Where(x => x.Type == "Username").Select(c => c.Value).SingleOrDefault();
-    string role = User.Claims.Where(x => x.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault();
+    var currentUser = ContextHelper.GetCurrentUser(Context);
 }
 
-<p>Your id: @id</p>
-<p>Your username: @username</p>
-<p>Your role: @role</p>
+<p>Your id: @currentUser.Id</p>
+<p>Your username: @currentUser.Username</p>
+<p>Your role: @currentUser.Role</p>
+
+@if (currentUser.IsAdmin())
+{
+    <h1>Users in database</h1>
+    foreach (var user in Model)
+    {
+        <p>ID: @user.Id</p>
+        <p>Username: @user.Username</p>
+        <p>Email: @user.Email</p>
+        <p>Role: @user.Role</p>
+        <br>
+    }
+}

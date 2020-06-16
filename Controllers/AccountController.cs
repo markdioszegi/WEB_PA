@@ -19,11 +19,13 @@ namespace PA.Controllers
     {
         private readonly ILogger<AccountController> _logger;
         private readonly IUsersService _usersService;
+        private readonly IOrdersService _ordersService;
 
-        public AccountController(ILogger<AccountController> logger, IUsersService usersService)
+        public AccountController(ILogger<AccountController> logger, IUsersService usersService, IOrdersService ordersService)
         {
             _logger = logger;
             _usersService = usersService;
+            _ordersService = ordersService;
         }
 
         [AllowAnonymous]
@@ -38,12 +40,13 @@ namespace PA.Controllers
         [HttpPost]
         public IActionResult Register(AccountModel account)
         {
-            System.Console.WriteLine(account.RegisterModel.Username);
             try
             {
                 _usersService.Register(account.RegisterModel.Username, account.RegisterModel.Password, account.RegisterModel.Email);
+                User currentUser = _usersService.GetOne(account.RegisterModel.Username);
+                _ordersService.CreateOrder(currentUser.Id);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 ModelState.AddModelError("AlreadyExists", "This username is already taken.");
                 return View("Index");
@@ -58,7 +61,8 @@ namespace PA.Controllers
             User user = _usersService.Login(account.LoginModel.Username, account.LoginModel.Password);
             if (user == null)
             {
-                //If the user does not exist in the DB
+                //If the user does not exist in the DB or the credentials were wrong
+                System.Console.WriteLine("Something happened");
                 return RedirectToAction("Index");
             }
             else
@@ -96,7 +100,7 @@ namespace PA.Controllers
 
         public IActionResult Profile()
         {
-            return View();
+            return View(_usersService.GetAll());
         }
 
         public IActionResult AccessDenied()

@@ -7,6 +7,9 @@ namespace PA.Services
     {
         List<Product> GetAll();
         Product GetOne(int id);
-        void AddProduct(ProductModel product);
+        Product GetOne(string name);
+        void Add(ProductModel product);
+        void Remove(int id);
+        void Update(int id, ProductModel product);
     }
 }

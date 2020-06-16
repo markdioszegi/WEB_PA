@@ -18,37 +18,15 @@ namespace PA.Controllers
             _productsService = productsService;
         }
 
-        [Authorize(Roles = "admin")]
-        public IActionResult AddProduct()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "admin")]
-        [HttpPost]
-        public IActionResult AddProduct(ProductModel product)
-        {
-            try
-            {
-                _productsService.AddProduct(product);
-            }
-            catch (ProductAlreadyExists)
-            {
-                ModelState.AddModelError("AlreadyExists", "Product already exists!");
-                return View();
-            }
-            return RedirectToAction("Index");
-        }
-
         public IActionResult Index()
         {
             System.Console.WriteLine("Invoked products!");
             return View(_productsService.GetAll());
         }
 
-        public IActionResult ShowProduct(int id)
+        public IActionResult ShowProduct(string name)
         {
-            return View(_productsService.GetOne(id));
+            return View(_productsService.GetOne(name));
         }
     }
 }

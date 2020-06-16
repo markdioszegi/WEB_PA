@@ -1,3 +1,5 @@
+using System;
+
 namespace PA
 {
     public class User
@@ -20,6 +22,11 @@ namespace PA
         public override string ToString()
         {
             return $"id: {Id}\nusername: {Username}\npass: {Password}\nemail: {Email}\nrole: {Role}";
+        }
+
+        public bool IsAdmin()
+        {
+            return Role == "admin" ? true : false;
         }
     }
 }

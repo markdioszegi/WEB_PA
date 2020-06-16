@@ -7,7 +7,7 @@ namespace PA
         public string Category { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public int Quantity { get; set; }
+        public int Stock { get; set; }
         public string Image { get; set; }
 
         /* public Product(int id, string category, string name, string description, float price, int quantity)
@@ -22,7 +22,7 @@ namespace PA
 
         public override string ToString()
         {
-            return $"id: {Id}\ncategory: {Category}\nname: {Name}\ndescription: {0}\nprice: {Price}\nquantity: {Quantity}";
+            return $"id: {Id}\ncategory: {Category}\nname: {Name}\ndescription: {0}\nprice: {Price}\nquantity: {Stock}";
         }
     }
 }

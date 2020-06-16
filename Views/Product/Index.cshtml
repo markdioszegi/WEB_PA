@@ -20,10 +20,10 @@
                     <div class="name">
                         <h3>@product.Name</h3>
                     </div>
-                    @*  *@
-                    @if (product.Quantity > 0)
+
+                    @if (product.Stock > 0)
                     {
-                        <span class="in-stock">In stock (@product.Quantity)</span>
+                        <span class="in-stock">In stock (@product.Stock)</span>
                     }
                     else
                     {
@@ -31,7 +31,7 @@
                     }
                     <br>
                     <span class="price">$@product.Price</span>
-                    <button class="btn-view float-right" onclick="location.href='@Url.Action("ShowProduct", "Product", new {id = product.Id})'">View</button>
+                    <button class="btn-view float-right" onclick="location.href='@Url.Action("ShowProduct", "Product", new {name = product.Name})'">View</button>
                 </div>
             </div>
         }

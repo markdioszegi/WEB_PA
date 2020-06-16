@@ -20,8 +20,12 @@ namespace PA.Services
                     {
                         throw new ProductAlreadyExists();
                     }
+                    else
+                    {
+                        System.Console.WriteLine("SQL error! State: " + sqlState);
+                    }
                 }
-                //throw;
+                throw;
             }
         }
     }

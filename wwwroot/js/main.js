@@ -7,6 +7,8 @@ let loginForm;
 let registerForm;
 let loginBtn;
 let registerBtn;
+let pwInputs;
+let adminDropDownBtn;
 
 window.addEventListener("load", onPageLoaded);
 
@@ -20,12 +22,15 @@ function onPageLoaded() {
     registerForm = this.document.getElementById("register");
     loginBtn = this.document.getElementById("loginBtn");
     registerBtn = this.document.getElementById("registerBtn");
+    adminDropDownBtn = this.document.getElementById("adminDropDownBtn");
 
+    pwInputs = this.document.querySelectorAll('input[type="password"]');
 
     //events
     loginBtn.addEventListener("click", showLoginForm);
     registerBtn.addEventListener("click", showRegisterForm);
     loginBtn.click();
+    adminDropDownBtn.addEventListener("click", toggleAdminDropDown);
 
 
     const xhr = new XMLHttpRequest();
@@ -50,4 +55,32 @@ function showRegisterForm() {
     loginBtn.classList.remove("active");
     registerForm.style.display = "block";
     registerBtn.classList.add("active");
+}
+
+function showPassword() {
+    pwInputs.forEach(pwInput => {
+        if (pwInput.type === "password") {
+            pwInput.type = "text";
+        }
+        else {
+            pwInput.type = "password";
+        }
+    });
+}
+
+function toggleAdminDropDown() {
+    adminDropDown.parentNode.querySelector("#adminDropDown").classList.toggle("show");
+}
+
+window.onclick = function (event) {
+    if (!event.target.matches('#adminDropDownBtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
 }

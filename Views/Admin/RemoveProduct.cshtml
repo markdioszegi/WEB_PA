@@ -1,0 +1,24 @@
+@model ProductModel
+
+@{
+    ViewData["Title"] = "Remove a product";
+}
+
+<div>
+    <h3>Add a product</h3>
+    <div class="error-box">
+        @Html.ValidationMessage("AlreadyExists")
+    </div>
+
+    @using (Html.BeginForm("RemoveProduct", "Admin", FormMethod.Post))
+    {
+        <select name="ddlUpdateProduct">
+        @foreach (var product in Model.Products)
+        {
+            <option value="@product.Name">@product.Name</option>
+        }
+        </select>
+
+        <input type="submit" value="Remove">
+    }
+</div>
