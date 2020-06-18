@@ -11,8 +11,19 @@
 @if (Model.Stock > 0)
 {
     <p>In stock (@Model.Stock)</p>    
-    <input type="number" value="1" min="1" max="@Model.Stock">
-    <input type="submit" value="Add to cart">
+    @* AJAX *@
+    @* <form method="POST"> *@
+    @if(User.Identity.IsAuthenticated)
+    {
+        @Html.Hidden("productId", Model.Id)
+        <input id="quantity" name="quantity" type="number" value="1" min="1" max="@Model.Stock">
+        <button id="addToCartBtn" class="btn-submit">Add to cart</button>
+    }
+    else
+    {
+        <button class="btn-submit" onclick="location.href = '@Url.Action("Index", "Account")'">Add to cart</button>
+    }
+    @* </form> *@
 }
 else
 {

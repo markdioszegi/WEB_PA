@@ -9,6 +9,7 @@ namespace PA
         public decimal Price { get; set; }
         public int Stock { get; set; }
         public string Image { get; set; }
+        public int Quantity { get; set; }
 
         /* public Product(int id, string category, string name, string description, float price, int quantity)
         {

@@ -1,0 +1,36 @@
+@model ActiveOrderModel
+
+@{
+    ViewData["Title"] = "My cart";
+}
+
+<div style="text-align: center;">
+    <h1>Your active order</h1>
+
+    <p>Order ID: @Model.Order.Id</p>
+    <p>Order date: @Model.Order.OrderDate</p>
+
+    <h1>Cart items</h1>
+
+    @if(Model.Products.Any())
+    {
+        <div class="cart">
+            @foreach (var product in Model.Products)
+            {
+                <div style="display: flex; align-items: center; padding: 1em;">
+                    <h3><strong>@product.Name</strong> | Category: @product.Category | Quantity (@product.Quantity) | $@(product.Price * product.Quantity)</h3>
+                    <i data-item-id="@product.Id" class="fas fa-times-circle remove-icon clickable align-right" style="padding: 1em;"></i>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h2>Your cart is currently empty</h2>
+    }
+    <h3>Total: $@Model.Order.FinalPrice</h3>
+
+    <button class="btn-submit" onclick="checkCart()">CHECKOUT</button>
+
+    <button class="btn-submit" onclick="location.href = '@Url.Action("PreviousOrders", "Cart")'">Previous orders</button>
+</div>

@@ -20,7 +20,7 @@ namespace PA.Controllers
 
         public IActionResult Index()
         {
-            System.Console.WriteLine("Invoked products!");
+            _logger.LogInformation("Visited products");
             return View(_productsService.GetAll());
         }
 

@@ -30,7 +30,7 @@ namespace PA.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            System.Console.WriteLine("Invoked home!");
+            _logger.LogInformation("Visited home");
             return View();
         }
 

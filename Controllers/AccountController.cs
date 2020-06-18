@@ -32,7 +32,7 @@ namespace PA.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            System.Console.WriteLine("Account page visited");
+            _logger.LogInformation("Account visited");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace PA.Controllers
             }
             catch (Exception e)
             {
-                ModelState.AddModelError("AlreadyExists", "This username is already taken.");
+                ModelState.AddModelError("AccountError", "This username is already taken!");
                 return View("Index");
             }
             return View("Index");
@@ -62,8 +62,8 @@ namespace PA.Controllers
             if (user == null)
             {
                 //If the user does not exist in the DB or the credentials were wrong
-                System.Console.WriteLine("Something happened");
-                return RedirectToAction("Index");
+                ModelState.AddModelError("AccountError", "Wrong username or password!");
+                return View("Index");
             }
             else
             {
@@ -76,7 +76,7 @@ namespace PA.Controllers
                         new Claim(ClaimTypes.Role, user.Role),
                     }, CookieAuthenticationDefaults.AuthenticationScheme)),
                     new AuthenticationProperties());
-                System.Console.WriteLine("Logged in as: " + user.ToString());
+                //System.Console.WriteLine("Logged in as: " + user.ToString());
                 if (returnUrl == null)
                 {
                     return LocalRedirect("/");

@@ -1,4 +1,6 @@
 //Globals
+const baseURL = "https://localhost:5001/";
+
 let mainDiv;
 let navbarDiv;
 let navLinks;
@@ -9,6 +11,8 @@ let loginBtn;
 let registerBtn;
 let pwInputs;
 let adminDropDownBtn;
+let addToCartBtn;
+let cartItems;
 
 window.addEventListener("load", onPageLoaded);
 
@@ -23,25 +27,74 @@ function onPageLoaded() {
     loginBtn = this.document.getElementById("loginBtn");
     registerBtn = this.document.getElementById("registerBtn");
     adminDropDownBtn = this.document.getElementById("adminDropDownBtn");
+    addToCartBtn = this.document.querySelector("#addToCartBtn");
+    cartItems = this.document.querySelectorAll("[data-item-id]");
 
     pwInputs = this.document.querySelectorAll('input[type="password"]');
 
     //events
-    loginBtn.addEventListener("click", showLoginForm);
-    registerBtn.addEventListener("click", showRegisterForm);
-    loginBtn.click();
-    adminDropDownBtn.addEventListener("click", toggleAdminDropDown);
+    if (loginBtn) {
+        loginBtn.addEventListener("click", showLoginForm);
+        loginBtn.click();
+    }
+    if (registerBtn) {
+        registerBtn.addEventListener("click", showRegisterForm);
+    }
+    if (adminDropDownBtn) {
+        adminDropDownBtn.addEventListener("click", toggleAdminDropDown);
+    }
+    if (addToCartBtn) {
+        addToCartBtn.addEventListener("click", addToCart);
+    }
+    if (cartItems) {
+        cartItems.forEach(item => {
+            item.addEventListener("click", removeFromCart);
+        });
+    }
+
+    console.log("JS loaded");
+    /* xhr.addEventListener("load", function () {
+        console.log(xhr.responseText);
+    }) */
+};
+
+function addToCart() {
+    let inputId = document.getElementById("productId");
+    let inputQuantity = document.getElementById("quantity");
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", baseURL + "Cart/AddToCart", true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  //It is too
+    xhr.send("productId=" + inputId.value + "&quantity=" + inputQuantity.value);
+
+    xhr.addEventListener("load", function () {
+        alert(JSON.parse(this.responseText).text);
+    });
+}
+
+function removeFromCart() {
+    const parentDiv = this.parentNode;
+    console.log(parentDiv);
 
 
     const xhr = new XMLHttpRequest();
-    xhr.addEventListener("load", function () {  //important
-        console.log(xhr.responseText);
-    })
-    xhr.open("GET", "https://localhost:5001/home/getusers", true);
-    xhr.send();
+    xhr.open("POST", baseURL + "Cart/RemoveFromCart", true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');  //It is too
+    xhr.send("productId=" + this.dataset.itemId);
 
-    console.log("loaded");
-};
+    xhr.addEventListener("load", function () {
+        parentDiv.remove();
+    });
+}
+
+function checkCart() {
+    if (!document.querySelector("[data-item-id]")) {
+        alert("Your cart is empty!");
+    }
+    else {
+        location.href = "Cart/Checkout";
+    }
+}
 
 function showLoginForm() {
     registerForm.style.display = "none";

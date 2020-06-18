@@ -14,6 +14,7 @@
         rel="stylesheet">
     <link rel='stylesheet' type='text/css' media='screen' href='~/css/main.css'>
     <script src='~/js/main.js'></script>
+    <script src="https://kit.fontawesome.com/e1f7535694.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="main">
@@ -28,40 +29,42 @@
                 <a class="nav-link" asp-controller="Product" asp-action="Index">Products</a>
             </li>
 
-            @if (User.Identity.IsAuthenticated)
-            {
-                if (ContextHelper.GetCurrentUser(Context).IsAdmin())
+            <div class="align-right">
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <li class="nav-item align-right">
-                        <a id="adminDropDownBtn" class="nav-link clickable">Admin Panel</a>
-                        <div id="adminDropDown" class="dropdown-content">
-                            <a class="nav-link" asp-controller="Admin" asp-action="AddProduct">Add product</a>
-                            <a class="nav-link" asp-controller="Admin" asp-action="UpdateProduct">Update product</a>
-                            <a class="nav-link" asp-controller="Admin" asp-action="RemoveProduct">Remove product</a>
-                        </div>
+                    if (ContextHelper.GetCurrentUser(Context).IsAdmin())
+                    {
+                        <li class="nav-item">
+                            <a id="adminDropDownBtn" class="nav-link clickable">Admin Panel</a>
+                            <div id="adminDropDown" class="dropdown-content">
+                                <a class="nav-link" asp-controller="Admin" asp-action="AddProduct">Add product</a>
+                                <a class="nav-link" asp-controller="Admin" asp-action="UpdateProduct">Update product</a>
+                                <a class="nav-link" asp-controller="Admin" asp-action="RemoveProduct">Remove product</a>
+                            </div>
+                        </li>
+                    }
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Cart" asp-action="Index">Cart</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Profile">Profile</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <form method="POST" asp-controller="Account" asp-action="Logout">
+                            <a class="nav-link clickable" onclick="this.parentNode.submit(); return false;">Logout</a>
+                        </form>
                     </li>
                 }
-
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Home" asp-action="Cart">Cart</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" asp-controller="Account" asp-action="Profile">Profile</a>
-                </li>
-
-                <li class="nav-item">
-                    <form method="POST" asp-controller="Account" asp-action="Logout">
-                        <a class="nav-link clickable" onclick="this.parentNode.submit(); return false;">Logout</a>
-                    </form>
-                </li>
-            }
-            else
-            {
-                <li class="nav-item align-right">
-                    <a class="nav-link" asp-controller="Account" asp-action="Index">Login</a>
-                </li>
-            }
+                else
+                {
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-controller="Account" asp-action="Index">Login</a>
+                    </li>
+                }
+            </div>
         </ul>
 
         <div class="container">

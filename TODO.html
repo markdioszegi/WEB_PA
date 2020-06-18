@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Todo PA</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-size: x-large;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Todos</h1>
+
+    <ul>
+        <li>user auth &check; kinda (Claim Types how-to)</li>
+
+        <li>admin user will be able to add a product on the website via form &check;</li>
+
+        <li>maybe not SPA but MPA &check;</li>
+
+        <li>services/sql product service &check;</li>
+
+        <li>IDBconnection &check;</li>
+
+        <li>DB Triggers</li>
+        <ul>
+            <li>update_final_price trigger: Update final price in order every insert, update or delete &check;</li>
+            <li>Also make sure to link the order_detail to an <strong class="red">active</strong> order &check;</li>
+        </ul>
+
+        <li>Exception handling from DB</li>
+
+        <li>Generate Dummy data</li>
+
+        <li>Some questions about authorization</li>
+        <ul>
+            <li>What happens if the user remains logged in even he/she is not in the database as a user record after a
+                hard
+                database reset &check;</li>
+            <li>If I have to notify the user about what he/she did (logged in successfully/unsuccessfully) how should I
+                do
+                it &check;</li>
+        </ul>
+
+        <li>Admin panel</li>
+        <ul>
+            <li>Admins have an independent panel &check;</li>
+            <li>Admins can add/update/remove products &check; (Exception handling still a thing)</li>
+            <li>Can see the registered users &check;</li>
+        </ul>
+
+        <li>Profile page</li>
+        <ul>
+            <li>Shows basic infos about the user &check;</li>
+        </ul>
+
+        <li>Cart panel (AJAX)</li>
+        <ol>
+            <li>On product view</li>
+            <ul>
+                <li>Add to cart notifies the user and adds the selected item to one's cart &check;</li>
+            </ul>
+            <li>On cart view</li>
+            <ul>
+                <li>Customers have an active order by default &check;</li>
+                <li>Showing one's products line by line &check;</li>
+                <li>A little remove (x) button &check;</li>
+                <li>Perhaps a quantity change?</li>
+                <li>Total price below the ordered products &check;</li>
+                <li>Clicking on the <strong class="red">order</strong> button changes the order's active value to false
+                </li>
+                <li>Show basic informations of previous orders &check;</li>
+                <li>After that creates a default <strong class="red">active order</strong></li>
+            </ul>
+        </ol>
+
+        <li>Search bar</li>
+        <ul>
+            <li>JavaScript powered dynamic searching (product name, tag, price)</li>
+        </ul>
+
+        <li>Sidenote: Many-many kapcsolat PA-n</li>
+        <li>I think I have covered everything</li>
+    </ul>
+</body>
+
+</html>

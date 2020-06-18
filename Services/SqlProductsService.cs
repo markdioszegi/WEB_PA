@@ -13,7 +13,7 @@ namespace PA.Services
             _connection = connection;
         }
 
-        static Product ToProduct(IDataReader reader)
+        public static Product ToProduct(IDataReader reader)
         {
             return new Product
             {

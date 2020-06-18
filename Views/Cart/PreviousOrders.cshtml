@@ -1,0 +1,24 @@
+@model List<Order>
+
+@{
+    ViewData["Title"] = "Previous orders";
+}
+
+<div style="text-align: center;">
+    @if(!Model.Any())
+    {
+        <h1>No previous orders</h1>
+    }
+    else
+    {
+        <h1>Previous orders</h1>
+        foreach (var order in Model)
+        {
+            if (!order.Active)
+            {
+                <p>Order date: @order.OrderDate</p>
+                <p>Final price: @order.FinalPrice</p>
+            }
+        }
+    }
+</div>
