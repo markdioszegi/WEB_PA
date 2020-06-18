@@ -1,7 +1,3 @@
-@{
-    ViewData["Title"] = "Home";
-}
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +17,11 @@
         <ul id="navBar" class="container nav-bar">
             <a asp-controller="Home" asp-action="Index"><img class="nav-brand" src="~/img/brand.svg"></img></a>
 
-            <li id="home" class="nav-item active">
+            <li id="home" class="nav-item @Html.IsActive("Home", "Index")">
                 <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
             </li>
 
-            <li id="products" class="nav-item">
+            <li id="products" class="nav-item @Html.IsActive("Product", "Index")">
                 <a class="nav-link" asp-controller="Product" asp-action="Index">Products</a>
             </li>
 
@@ -34,7 +30,7 @@
                 {
                     if (ContextHelper.GetCurrentUser(Context).IsAdmin())
                     {
-                        <li class="nav-item">
+                        <li class="nav-item @Html.IsActive("Admin")">
                             <a id="adminDropDownBtn" class="nav-link clickable">Admin Panel</a>
                             <div id="adminDropDown" class="dropdown-content">
                                 <a class="nav-link" asp-controller="Admin" asp-action="AddProduct">Add product</a>
@@ -44,11 +40,11 @@
                         </li>
                     }
 
-                    <li class="nav-item">
+                    <li class="nav-item @Html.IsActive("Cart", "Index")">
                         <a class="nav-link" asp-controller="Cart" asp-action="Index">Cart</a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item @Html.IsActive("Account", "Profile")">
                         <a class="nav-link" asp-controller="Account" asp-action="Profile">Profile</a>
                     </li>
 
@@ -60,7 +56,7 @@
                 }
                 else
                 {
-                    <li class="nav-item ">
+                    <li class="nav-item @Html.IsActive("Account", "Index")">
                         <a class="nav-link" asp-controller="Account" asp-action="Index">Login</a>
                     </li>
                 }

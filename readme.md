@@ -18,6 +18,7 @@
 - Admins can
   - add/update/remove products to the site
   - see users
+- ContextHelper class to easily access the users claims
   
 ## Application logic
 

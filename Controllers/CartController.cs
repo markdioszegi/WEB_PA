@@ -75,12 +75,18 @@ namespace PA.Controllers
             return Json(new { text = "deleted " + productId });
         }
 
+        [HttpGet]
         public IActionResult Checkout()
         {
-            // lower stock number
             int userId = ContextHelper.GetCurrentUser(HttpContext).Id;
             int orderId = _ordersService.GetActive(userId).Id;
             List<Product> products = _ordersService.GetProductsByOrderId(orderId);
+            //check if the cart is empty
+            if (!products.Any())
+            {
+                return RedirectToAction("Index");
+            }
+            // lower stock number
             foreach (var product in products)
             {
                 ProductModel productModel = new ProductModel();
