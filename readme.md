@@ -20,8 +20,6 @@
   - see users
 - ContextHelper class to easily access the users claims
   
-## Application logic
-
-![figure1](wwwroot/img/figure1.png)
+<!-- ## Application logic -->
 
 - basic exceptions handled (everything relies on the sql database)
